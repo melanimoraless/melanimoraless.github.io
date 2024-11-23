@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación del Curso</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #004080;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Evaluación del Curso de Inteligencia Artificial</h1>
+    <nav style='text-align:center; padding:10px; background-color:#004080;'>
+    <a href='index.html' style='color:white; text-decoration:none; margin-right:15px;'>Inicio</a>
+</nav>
+</header>
+    <main>
+        <form id="evaluacionForm">
+            <div class="question">
+                <p>1. ¿Qué es la Inteligencia Artificial?</p>
+                <input type="radio" name="q1" value="correcto"> Un campo de la informática que busca crear sistemas que simulen la inteligencia humana.<br>
+                <input type="radio" name="q1" value="incorrecto"> Un software diseñado únicamente para juegos.<br>
+                <input type="radio" name="q1" value="incorrecto"> Un hardware especializado para cálculos matemáticos.<br>
+            </div>
+            <div class="question">
+                <p>2. Selecciona los subcampos de la Inteligencia Artificial:</p>
+                <input type="checkbox" name="q2" value="correcto"> Aprendizaje Automático<br>
+                <input type="checkbox" name="q2" value="correcto"> Procesamiento de Lenguaje Natural<br>
+                <input type="checkbox" name="q2" value="incorrecto"> Gestión de Bases de Datos<br>
+            </div>
+            <div class="question">
+                <p>3. ¿Cuál de las siguientes es una técnica de aprendizaje supervisado?</p>
+                <select name="q3">
+                    <option value="incorrecto">K-Means</option>
+                    <option value="correcto">Regresión Lineal</option>
+                    <option value="incorrecto">Algoritmos Genéticos</option>
+                </select>
+            </div>
+            <div class="question">
+                <p>4. Relaciona los conceptos con su definición:</p>
+                <ul>
+                    <li>
+                        <label>Red Neuronal:</label>
+                        <select name="q4_red">
+                            <option value="incorrecto">Un sistema de reglas lógicas</option>
+                            <option value="correcto">Un modelo inspirado en el cerebro humano</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>Algoritmo:</label>
+                        <select name="q4_algoritmo">
+                            <option value="correcto">Un conjunto de pasos para resolver un problema</option>
+                            <option value="incorrecto">Un lenguaje de programación específico</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+            <div class="question">
+                <p>5. Describe brevemente el impacto de la Inteligencia Artificial en la sociedad:</p>
+                <textarea name="q5" rows="4" cols="50"></textarea>
+            </div>
+            <button type="button" onclick="calcularCalificacion()">Enviar</button>
+        </form>
+        <p id="resultado"></p>
+    </main>
+    <script>
+        function calcularCalificacion() {
+            let calificacion = 0;
+            const respuestas = new FormData(document.getElementById('evaluacionForm'));
+
+            if (respuestas.get('q1') === 'correcto') calificacion++;
+
+            const q2 = respuestas.getAll('q2');
+            if (q2.includes('correcto') && q2.length === 2) calificacion++;
+
+            if (respuestas.get('q3') === 'correcto') calificacion++;
+
+            if (respuestas.get('q4_red') === 'correcto') calificacion++;
+            if (respuestas.get('q4_algoritmo') === 'correcto') calificacion++;
+
+            document.getElementById('resultado').innerText = `Tu calificación es: ${calificacion}/5`;
+        }
+    </script>
+</body>
+</html>
+
